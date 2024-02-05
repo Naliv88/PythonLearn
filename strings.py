@@ -1,0 +1,26 @@
+s1="Hello world. "
+s2="i am pYThon."
+s3="23456789"
+s5=""
+# print(b"hello world")
+# print(s1+s2+s3)
+# print(s1*5)
+print(s1[7])
+print(s2[2:8:1])
+print(s2.find("h", 0, len(s1)))
+print(s2.find("u", 0, len(s1)))
+print(s2.rfind("h", 0, len(s1)))
+print(s1.split(" "))
+# print(s1.isdigit)
+# print(s3.isdigit)
+# print(s1.isalpha)
+# print(s3.isalpha)
+# print(s1.isalnum)
+print(s1.islower)
+print(s1.isupper)
+l=s2.split(" ")
+print(l, s5.join(l))
+print(s5.join(l).capitalize())
+print(s1.swapcase())
+print(s2.title())
+print(s1.strip())
