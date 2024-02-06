@@ -54,7 +54,7 @@ def valid_input(prompt):
             print(f"Error:{e}")
             continue
 
-student_list = randomStudentList(valid_input("scope >>> "))
+student_list = randomStudentList(valid_input("Кількість студентів >>> "))
 
 print(student_list)
 
