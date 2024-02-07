@@ -10,52 +10,54 @@ b. Якщо професор Грубл був послідовним, виве�
 В цьому випадку професор послідовний, а поріг складання іспиту знаходиться в діапазоні 73 – 78 балів.
 """
 import random
+from faker import Faker
 
-def randomStudentList(stud_count):
-    students=[] 
-    count=0
-    while count<stud_count:
+def random_student_list(stud_count):
+    fake = Faker()
+    students = [] 
+    count = 0
+    while count < stud_count:
         student = {
-            "Student": "student "+ str(count+1),
+            "Student": fake.name() + fake.last_name(),
             "mark": random.randint(50, 100), 
             "result": random.choice(["Failed", "Passed"])
         }
         students.append(student)
-        count+=1
+        count += 1
     return students
 
-def Professor_consistent(min_passing, max_failing):
+def professor_consistent(min_passing, max_failing):
     if min_passing <= max_failing:
         print("Професор непослідовний")
     else:
         print("Професор послідовний.")
         print(f"Поріг для складання може бути в межах: {max_failing} - {min_passing}")
 
-def minMaxMarks(student_list):
-    passed_list=[100,]
-    failed_list=[40,]
+def min_max_marks(student_list):
+    passed_list = [100]
+    failed_list = [40]
     for student in student_list:
-        if student['result']=="Passed":
+        if student['result'] == "Passed":
             passed_list.append(student["mark"])
-        elif student['result']=="Failed":
+        elif student['result'] == "Failed":
             failed_list.append(student["mark"])
-    min_passing_score=min(passed_list)
-    max_failing_score=max(failed_list)
-    Professor_consistent(min_passing_score, max_failing_score)
+    min_passing = min(passed_list)
+    max_failing = max(failed_list)
+    professor_consistent(min_passing, max_failing)
 
 def valid_input(prompt):
     while True:
         try:
-            value=input(prompt)
+            value = input(prompt)
             if int(value) <= 0 or not value.isdigit():
                 raise ValueError("Invalid input")
             return int(value)
         except ValueError as e:
-            print(f"Error:{e}")
+            print(f"Error: {e}")
             continue
 
-student_list = randomStudentList(valid_input("Кількість студентів >>> "))
+student_list = random_student_list(valid_input("Кількість студентів >>> "))
 
 print(student_list)
 
-minMaxMarks(student_list)
+min_max_marks(student_list)
