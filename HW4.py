@@ -19,6 +19,12 @@ for i in range(2, math.ceil(math.sqrt(N))):  # від 2 до квадратно�
 
 import time
 
+def time_function_execution(func, rang):
+    start_time = time.time()
+    sieve_primes = func(rang)
+    end_time = time.time()
+    return [start_time, sieve_primes, end_time]
+
 def simple_prime_search(n):
     primes = []
     for num in range(2, n):
@@ -39,12 +45,8 @@ def sieve_of_eratosthenes(n):
 ranges = [100, 1000, 100000] 
 
 for r in ranges:
-    start_time = time.time()
-    simple_primes = simple_prime_search(r)
-    end_time = time.time()
-    print(f"Прості числа до {r} за простим методом: {len(simple_primes)} чисел, час виконання: {end_time - start_time} сек")
+    simple_primes=time_function_execution(simple_prime_search, r)
+    print(f"Прості числа до {r} за простим методом: {len(simple_primes[1])} чисел, час виконання: {simple_primes[2] - simple_primes[0]} сек")
 
-    start_time = time.time()
-    sieve_primes = sieve_of_eratosthenes(r)
-    end_time = time.time()
-    print(f"Прості числа до {r} за методом Решета Ератосфена: {len(sieve_primes)} чисел, час виконання: {end_time - start_time} сек")
+    sieve_primes =time_function_execution(sieve_of_eratosthenes, r)
+    print(f"Прості числа до {r} за методом Решета Ератосфена: {len(sieve_primes[1])} чисел, час виконання: {sieve_primes[2] - sieve_primes[0]} сек")
